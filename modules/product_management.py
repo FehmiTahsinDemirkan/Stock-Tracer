@@ -1,6 +1,7 @@
 import tkinter as tk
-from tkinter import messagebox
+from tkinter import messagebox,ttk
 from tkcalendar import DateEntry
+
 from database_management import DatabaseManager
 
 class ProductManagementApp:
@@ -23,8 +24,10 @@ class ProductManagementApp:
 
         self.category_label = tk.Label(master, text="Kategori:")
         self.category_label.grid(row=1, column=0, padx=10, pady=5)
-        self.category_entry = tk.Entry(master)
-        self.category_entry.grid(row=1, column=1, padx=10, pady=5)
+        self.category_combobox = ttk.Combobox(master,
+                                              values=["Konserve Ürün", "Ambalajlı Ürün", "Açık Ürün", "Temizlik Ürün",
+                                                      "Kişisel Bakım Ürün", "İlaç Ürün"])
+        self.category_combobox.grid(row=1, column=1, padx=10, pady=5)
 
         self.expiry_label = tk.Label(master, text="Son Kullanma Tarihi:")
         self.expiry_label.grid(row=2, column=0, padx=10, pady=5)
@@ -36,7 +39,7 @@ class ProductManagementApp:
 
     def add_product(self):
         product_name = self.product_name_entry.get()
-        category = self.category_entry.get()
+        category = self.category_combobox.get()
         expiry_date = self.expiry_entry.get_date().strftime('%Y-%m-%d')
 
         query = f"INSERT INTO Product (product_name, category, expiration_date, user_id) " \
