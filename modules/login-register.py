@@ -7,7 +7,6 @@ class LoginRegisterApp:
     def __init__(self, master):
         self.master = master
         master.title("Giriş ve Kayıt")
-
         # Veritabanı bağlantısı
         self.db_manager = DatabaseManager(server='FEHMI\SQLEXPRESS', database='StockTracer')
         self.db_manager.connect()
