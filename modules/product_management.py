@@ -1,4 +1,5 @@
 import tkinter as tk
+from datetime import date
 from tkinter import messagebox, ttk
 from tkcalendar import DateEntry
 from database_management import DatabaseManager
@@ -65,12 +66,17 @@ class ProductManagementApp:
     def add_product(self):
         product_name = self.product_name_entry.get()
         category = self.category_combobox.get()
-        expiry_date = self.expiry_entry.get_date().strftime('%Y-%m-%d')
+        expiry_date = self.expiry_entry.get_date()
 
-        query = f"INSERT INTO Product (product_name, category, expiration_date, user_id) " \
-                f"VALUES ('{product_name}', '{category}', '{expiry_date}', {self.user_id})"
-        self.db_manager.execute_query(query)
-        messagebox.showinfo("Başarılı", "Ürün başarıyla eklendi!")
+        current_date = date.today()
+
+        if expiry_date < current_date:
+            messagebox.showerror("Hata", "Geçmiş bir tarih seçemezsiniz!")
+        else:
+            query = f"INSERT INTO Product (product_name, category, expiration_date, user_id) " \
+                    f"VALUES ('{product_name}', '{category}', '{expiry_date}', {self.user_id})"
+            self.db_manager.execute_query(query)
+            messagebox.showinfo("Başarılı", "Ürün başarıyla eklendi!")
 
     def refresh_products(self):
         # Mevcut verileri temizle

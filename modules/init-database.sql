@@ -26,5 +26,11 @@ CREATE TABLE Product (
     user_id INT,
     FOREIGN KEY (user_id) REFERENCES Users(id)
 );
+GO
+
+CREATE TABLE NotificationUsers (
+    id INT PRIMARY KEY IDENTITY,
+    email NVARCHAR(100) NOT NULL
+);
 
 GO

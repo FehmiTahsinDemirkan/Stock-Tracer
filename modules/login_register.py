@@ -3,6 +3,7 @@ from tkinter import messagebox
 from database_management import DatabaseManager
 from product_management import run_product_management_app
 
+
 class LoginRegisterApp:
     def __init__(self, master):
         self.master = master
@@ -80,10 +81,13 @@ class LoginRegisterApp:
         self.db_manager.execute_query(query)
         messagebox.showinfo("Başarılı", "Kayıt başarıyla tamamlandı!")
 
+
+
 def run_login_register_app():
     root = tk.Tk()
     app = LoginRegisterApp(root)
     root.mainloop()
+
 
 if __name__ == "__main__":
     run_login_register_app()
