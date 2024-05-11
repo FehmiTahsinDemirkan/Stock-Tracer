@@ -34,3 +34,11 @@ CREATE TABLE NotificationUsers (
 );
 
 GO
+--Tablodaki ürünlerin son kullanma tarihine 1 ve 1 haftadan az kalmış ürünleri ExpiringProducts tablosuna kaydetmek
+INSERT INTO ExpiringProducts (product_name, expiration_date, user_id)
+SELECT product_name, expiration_date, user_id
+FROM Product
+WHERE expiration_date <= DATEADD(DAY, 1, GETDATE()) -- Son kullanma tarihi 1 gün veya daha az kalanlar
+   OR expiration_date <= DATEADD(DAY, 7, GETDATE()); -- Son kullanma tarihi 1 hafta veya daha az kalanlar
+
+

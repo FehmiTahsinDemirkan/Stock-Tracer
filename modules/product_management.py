@@ -1,5 +1,5 @@
 import tkinter as tk
-from datetime import date
+from datetime import date, timedelta, datetime
 from tkinter import messagebox, ttk
 from tkcalendar import DateEntry
 from database_management import DatabaseManager
@@ -38,6 +38,9 @@ class ProductManagementApp:
         self.submit_button = tk.Button(master, text="Ekle", command=self.add_product)
         self.submit_button.grid(row=3, column=0, padx=10, pady=5)
 
+        self.check_button = tk.Button(master, text="Kontrol Et", command=self.check_products)
+        self.check_button.grid(row=3, column=2, padx=10, pady=5)
+
         self.refresh_button = tk.Button(master, text="Yenile", command=self.refresh_products)
         self.refresh_button.grid(row=3, column=1, padx=10, pady=5)
 
@@ -48,8 +51,6 @@ class ProductManagementApp:
         self.tree.heading("Kategori", text="Kategori")
         self.tree.heading("Son Kullanma Tarihi", text="Son Kullanma Tarihi")
         self.tree.grid(row=4, column=0, padx=10, pady=5, columnspan=2)
-
-
 
         # Ürünleri göster
         self.show_products(user_id)
@@ -62,6 +63,27 @@ class ProductManagementApp:
         # Treeview'de ürünleri göster
         for row in rows:
             self.tree.insert("", "end", text=row[0], values=(row[1], row[2], row[3]))
+
+    def check_products(self):
+        # Bugünün tarihini al
+        today = datetime.today().date()
+
+        # Uyarı mesajı için boş bir metin (text) oluştur
+        warning_message = "Son kullanma tarihine kalan süre:\n\n"
+
+        # Ürünleri kontrol et ve son kullanma tarihine göre işlem yap
+        for item in self.tree.get_children():
+            product_name = self.tree.item(item, "values")[0]
+            expiry_date = datetime.strptime(self.tree.item(item, "values")[2], "%Y-%m-%d").date()
+
+            # Son kullanma tarihine kalan gün sayısını hesapla
+            remaining_days = (expiry_date - today).days
+
+            # Uyarı mesajına ürün adı ve kalan gün sayısını ekle
+            warning_message += f"{product_name}: {remaining_days} gün kaldı.\n"
+
+        # Uyarı mesajını göster
+        messagebox.showinfo("Ürün Uyarıları", warning_message)
 
     def add_product(self):
         product_name = self.product_name_entry.get()
@@ -85,6 +107,7 @@ class ProductManagementApp:
 
         # Yeniden ürünleri göster
         self.show_products(self.user_id)
+
 def run_product_management_app(user_id):
     root = tk.Tk()
     app = ProductManagementApp(root, user_id)
