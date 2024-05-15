@@ -32,6 +32,11 @@ CREATE TABLE NotificationUsers (
     id INT PRIMARY KEY IDENTITY,
     email NVARCHAR(100) NOT NULL
 );
+INSERT INTO NotificationUsers (email)
+SELECT DISTINCT u.email
+FROM Product p
+JOIN Users u ON p.user_id = u.id
+WHERE DATEDIFF(day, GETDATE(), p.expiration_date) BETWEEN 0 AND 7;
 
 GO
 --Tablodaki ürünlerin son kullanma tarihine 1 ve 1 haftadan az kalmış ürünleri ExpiringProducts tablosuna kaydetmek
