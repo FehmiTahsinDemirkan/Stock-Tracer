@@ -18,8 +18,8 @@ def main():
     # Ürün yönetimi uygulamasını başlat
     run_product_management_app(user_id)
 
-    # Bildirim uygulamasını başlat
-    notification.run_notification_service()
+    # # Bildirim uygulamasını başlat
+    # notification.run_notification_service()
 
     # Veritabanı bağlantısını kapat
     db_manager.disconnect()

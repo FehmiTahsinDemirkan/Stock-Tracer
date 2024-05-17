@@ -1,0 +1,17 @@
+2024-05-17 18:31:22,856 - WARNING - Eksik bilgi: Lütfen tüm alanlarý doldurun!
+2024-05-17 18:31:31,557 - INFO - Sorgu: INSERT INTO Product (product_name, category, expiration_date, user_id) VALUES ('d', 'Ambalajlý Ürün', '2024-05-24', 1)
+2024-05-17 18:31:32,680 - INFO - Sorgu: SELECT id, product_name, category, expiration_date FROM Product WHERE user_id=1
+2024-05-17 18:31:32,681 - INFO - Ürünler yenilendi.
+2024-05-17 18:31:44,297 - INFO - Sorgu: SELECT id, product_name, category, expiration_date FROM Product WHERE user_id=1
+2024-05-17 18:31:44,297 - INFO - Ürünler yenilendi.
+2024-05-17 18:31:46,978 - INFO - Urunler kontrol edildi.
+2024-05-17 18:33:06,307 - INFO - Sorgu: SELECT id, product_name, category, expiration_date FROM Product WHERE user_id=1
+ERROR:root:Failed to send email to user_email@example.com: (535, b'5.7.8 Username and Password not accepted. For more information, go to\n5.7.8  https://support.google.com/mail/?p=BadCredentials 4fb4d7f45d1cf-5733bebb57asm12003789a12.26 - gsmtp')
+2024-05-17 18:50:58,203 - INFO - Sorgu: SELECT id, product_name, category, expiration_date FROM Product WHERE user_id=1014
+2024-05-17 18:51:02,094 - INFO - Sorgu: INSERT INTO Product (product_name, category, expiration_date, user_id) VALUES ('a', 'Ambalajlý Ürün', '2024-05-17', 1014)
+2024-05-17 18:51:03,488 - INFO - Sorgu: SELECT id, product_name, category, expiration_date FROM Product WHERE user_id=1014
+2024-05-17 18:51:03,488 - INFO - Urunler yenilendi.
+2024-05-17 18:51:04,494 - INFO - Sorgu: SELECT id, product_name, category, expiration_date FROM Product WHERE user_id=1014
+2024-05-17 18:51:04,495 - INFO - Urunler yenilendi.
+2024-05-17 18:51:05,427 - INFO - Urunler kontrol edildi.
+2024-05-17 18:51:20,135 - INFO - Sorgu: SELECT id, product_name, category, expiration_date FROM Product WHERE user_id=1
